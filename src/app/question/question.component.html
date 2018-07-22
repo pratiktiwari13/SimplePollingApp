@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center text-success">Simple Polling App</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <form #formRef="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label  for="question_value">Question:</label>
+          <input [(ngModel)]="question.value" type="text" class="form-control" name="value" id="question_value"  placeholder="Enter your Poll Question" required>
+          <small [hidden]="question.value"  class="form-text  text-danger">*Value is required</small>
+        </div>
+
+        <div class="form-group">
+
+          <label for="options_value_add">Options:</label> <button (click)="add_option()" id="options_value_add" class="btn btn-outline-secondary  btn-sm float-right" type="button">+</button>
+
+        </div>
+
+        <!--ultimate solution https://embed.plnkr.co/6YPQXH/-->
+
+        <div *ngFor="let option of question.options; let i=index">
+          <div class="input-group mb-3" >
+            <input type="text" class="form-control" placeholder="Enter the Option"  [(ngModel)]="question.options[i].value" name="name{{i}}" required>
+            <div class="input-group-append" *ngIf="i!=0 && i!=1">
+              <button class="btn btn-outline-danger" type="button" (click)="question.options.splice(i,1)">X</button>
+            </div>
+          </div>
+          <div><small [hidden]="question.options[i].value"  class="form-text  text-danger">*Value is required</small></div>
+        </div>
+
+
+        <button [disabled]="!formRef.form.valid" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  {{question | json}}
+
+
+
+
+
+
+
+
+</div>
