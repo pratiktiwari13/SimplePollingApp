@@ -12,13 +12,13 @@
 
         <div class="form-group">
           <label  for="question_value">Question:</label>
-          <input [(ngModel)]="question.value" type="text" class="form-control" name="value" id="question_value"  placeholder="Enter your Poll Question" required>
+          <input [disabled]="hash" [(ngModel)]="question.value" type="text" class="form-control" name="value" id="question_value"  placeholder="Enter your Poll Question" required>
           <small [hidden]="question.value"  class="form-text  text-danger">*Value is required</small>
         </div>
 
         <div class="form-group">
 
-          <label for="options_value_add">Options:</label> <button (click)="add_option()" id="options_value_add" class="btn btn-outline-secondary  btn-sm float-right" type="button">+</button>
+          <label for="options_value_add">Options:</label> <button  [hidden]="hash" (click)="add_option()" id="options_value_add" class="btn btn-outline-secondary  btn-sm float-right" type="button">+</button>
 
         </div>
 
@@ -26,27 +26,30 @@
 
         <div *ngFor="let option of question.options; let i=index">
           <div class="input-group mb-3" >
-            <input type="text" class="form-control" placeholder="Enter the Option"  [(ngModel)]="question.options[i].value" name="name{{i}}" required>
+            <input [disabled]="hash" type="text" class="form-control" placeholder="Enter the Option"  [(ngModel)]="question.options[i].value" name="name{{i}}" required>
             <div class="input-group-append" *ngIf="i!=0 && i!=1">
-              <button class="btn btn-outline-danger" type="button" (click)="question.options.splice(i,1)">X</button>
+              <button [disabled]="hash" class="btn btn-outline-danger" type="button" (click)="question.options.splice(i,1)">X</button>
             </div>
           </div>
           <div><small [hidden]="question.options[i].value"  class="form-text  text-danger">*Value is required</small></div>
         </div>
 
 
-        <button [disabled]="!formRef.form.valid" type="submit" class="btn btn-primary">Submit</button>
+        <button [hidden]="hash" [disabled]="!formRef.form.valid" type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 
-  {{question | json}}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <input  type="text" class="form-control bg-primary" style="color: white" [hidden]="!hash" [(ngModel)]="question_link" disabled>
+      </div>
+      <div class="form-group">
+        <button ngxClipboard [cbContent]="question_link"  [hidden]="!hash" (click)="copy_link()" class="btn btn-success">Copy link</button>
+      </div>
+    </div>
+  </div>
 
-
-
-
-
-
-
-
+  <!--{{question | json}}-->
 </div>

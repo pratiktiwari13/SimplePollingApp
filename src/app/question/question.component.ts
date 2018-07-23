@@ -17,6 +17,10 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     options: [{value: ''}, {value: ''}]
   };
 
+  hash: string;
+
+  question_link: string;
+
   constructor(private questionService: QuestionService) { }
 
 
@@ -36,10 +40,16 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   }
 
   addQuestion(question: Question): void {
-    this.questionService.addQuestion(question)
+    /*this.questionService.addQuestion(question)
       .subscribe(response => {
-        console.log(response.hash);
-      });
+        this.hash = response.hash;
+      });*/
+    this.hash = '1111111';
+    this.question_link = 'https:google.com/' + this.hash;
+  }
+
+  copy_link(): void {
+    console.log('Link copied to dashboard');
   }
 
   /*https://stackoverflow.com/questions/42322968/angular2-dynamic-input-field-lose-focus-when-input-changes*/
