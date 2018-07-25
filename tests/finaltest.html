@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+</head>
+<body>
+<script type='text/javascript'>
+    var socket = io.connect('http://localhost:3000');
+    let req = $.ajax({
+            url: "http://localhost:3000/api/5b55db15378aec11c0198fa9/true",//change this url with different ids next change in broadcast()
+            type: 'GET',
+            success: function(res) {
+                console.log(res.status);
+                if(res.status === "true"){
+                var count=0;
+                console.log(res);
+                options = res.options;
+//                console.log(Object.keys(res.options[0]));
+//                console.log(Object.keys(res.options[1]));
+                for(let i = 0;i<res.options.length;i++)
+                {
+                    count++;
+                    let optionName = Object.keys(res.options[i])[0];
+                    document.writeln("<button onClick = 'broadcast(this.innerHTML)'>"+optionName+"</button>");
+                }
+                end();}
+                else{
+                    alert("cant vote");
+                }
+            }
+        });
+    function broadcast(innerhtml){
+        
+        let data={};
+        data["post_id"]="5b55db15378aec11c0198fa9";
+        data["option"]=innerhtml;
+        data = JSON.stringify(data);
+        data = JSON.parse(data);
+        socket.emit("join",data["post_id"]);
+        socket.emit("vote",data);
+    }
+    socket.on("updateUI",function(data){ 
+        console.log("Server gave="+data);
+    });
+    socket.on("create-cookie",function(cookie){
+        console.log("create cookie for "+cookie.post_id+"for browser id"+cookie.browser_id);
+    });
+    function end(){
+        req.abort();
+    }
+</script>
+
+</body>
+</html> 
