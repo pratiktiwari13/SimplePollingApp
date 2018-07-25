@@ -45,7 +45,7 @@ var socket = io.connect('http://localhost:3000'); //client socket reference
 
 function broadcast(innerhtml){ //onClick of the option should call this method by providing option's innerHTML     
         let data={};
-        data["post_id"]="5b55db15378aec11c0198fa9";
+        data["post_id"]=recieved_post_id;
         data["option"]=innerhtml;
         data = JSON.stringify(data);
         data = JSON.parse(data);
