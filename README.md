@@ -1,8 +1,8 @@
 # Simple Polling App
 A RESTful simple polling app based on the mean stack.
 
-Default domain:- localhost
-Default port:- 3000
+Default domain:- localhost.
+Default port:- 3000.
 
 ":" indicates variable names. 
 "()" contains data-type.
@@ -16,7 +16,7 @@ URL Formats:-
 
 JSON Data Formats according to request response scenarios. 
 ----------------------------------------------------------
-1.  Response JSON for the GET request for the post details
+1.  Response JSON for the GET request for the post details.
         1.1. object.topic_name :- topic name(String).
         1.2. object.options :- options(Array of String keyed and Number Valued pairs).
         1.3. object.status :- true or false(String).
