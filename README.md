@@ -14,7 +14,7 @@ URL Formats:-
 3. http://domain:port/home/api/question :- POST the post details along with the options. 
 4. http://domain:port :- The socket.io server location.
 
-JSON Data Formats according to request response scenarios 
+JSON Data Formats according to request response scenarios. 
 ----------------------------------------------------------
 1.  Response JSON for the GET request for the post details
         1.1. object.topic_name :- topic name(String).
@@ -38,13 +38,12 @@ NOTE :- Object.keys(res.options[i])[0] is to be done to get particular key names
 create-cookie object       post_id(String),browser_id(String)          Server
         
 Client Script for socket event handling.
----------------------------------
+----------------------------------------
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 
 var socket = io.connect('http://localhost:3000'); //client socket reference
 
-function broadcast(innerhtml){ //onClick of the option should call this method by providing option's innerHTML
-        
+function broadcast(innerhtml){ //onClick of the option should call this method by providing option's innerHTML     
         let data={};
         data["post_id"]="5b55db15378aec11c0198fa9";
         data["option"]=innerhtml;
