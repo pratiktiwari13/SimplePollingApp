@@ -39,27 +39,25 @@ create-cookie object       post_id(String),browser_id(String)          Server
         
 Client Script for socket event handling.
 ----------------------------------------
-<code>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+<code><script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script></code>
 
-var socket = io.connect('http://localhost:3000'); //client socket reference
+<code>var socket = io.connect('http://localhost:3000'); //client socket reference</code>
 
-function broadcast(innerhtml){ //onClick of the option should call this method by providing option's innerHTML     
-        let data={};
-        data["post_id"]=recieved_post_id;
-        data["option"]=innerhtml;
-        data = JSON.stringify(data);
-        data = JSON.parse(data);
-        socket.emit("join",data["post_id"]);
-        socket.emit("vote",data);
-    }
-    socket.on("updateUI",function(data){  
-        console.log("Server gave="+data); //update the UI when a vote has been registered in server
-    });
-    socket.on("create-cookie",function(cookie){ //create the localhost file with post_id:hash key value object
-        console.log("create cookie for "+cookie.post_id+"for browser id"+cookie.browser_id);
-    });
- </code>   
+<code>function broadcast(innerhtml){ //onClick of the option should call this method by providing option's innerHTML</code>   
+        <code>let data={};<code/>
+        <code>data["post_id"]=recieved_post_id;</code>
+        <code>data["option"]=innerhtml;</code>
+        <code>data = JSON.stringify(data);</code>
+        <code>data = JSON.parse(data);</code>
+        <code>socket.emit("join",data["post_id"]);</code>
+        <code>socket.emit("vote",data);</code>
+    <code>}</code>
+    <code>socket.on("updateUI",function(data){</code>  
+        <code>console.log("Server gave="+data);</code> //update the UI when a vote has been registered in server<code>
+    <code>});</code>
+    <code>socket.on("create-cookie",function(cookie){ //create the localhost file with post_id:hash key value object</code>
+        <code>console.log("create cookie for "+cookie.post_id+"for browser id"+cookie.browser_id);</code>
+    <code>});<code/>   
 -------------------------------------------------------------------------------------------------------
     PLEASE REFER TESTS FOLDER FOR EXAMPLES BY ROUTING TO /TESTS/<INSERTEXAMPLENAME.HTML>
 -------------------------------------------------------------------------------------------------------
