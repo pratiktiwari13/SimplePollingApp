@@ -1,5 +1,5 @@
 # Simple Polling App
-A RESTful simple polling app based on the mean stack.
+A simple polling app based on the mean stack.
 
 Default domain:- localhost.
 Default port:- 3000.
