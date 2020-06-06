@@ -39,6 +39,7 @@ create-cookie object       post_id(String),browser_id(String)          Server
         
 Client Script for socket event handling.
 ----------------------------------------
+<code>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 
 var socket = io.connect('http://localhost:3000'); //client socket reference
@@ -58,7 +59,7 @@ function broadcast(innerhtml){ //onClick of the option should call this method b
     socket.on("create-cookie",function(cookie){ //create the localhost file with post_id:hash key value object
         console.log("create cookie for "+cookie.post_id+"for browser id"+cookie.browser_id);
     });
-    
+ </code>   
 -------------------------------------------------------------------------------------------------------
     PLEASE REFER TESTS FOLDER FOR EXAMPLES BY ROUTING TO /TESTS/<INSERTEXAMPLENAME.HTML>
 -------------------------------------------------------------------------------------------------------
